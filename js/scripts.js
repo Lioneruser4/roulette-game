@@ -601,21 +601,21 @@ $(".button-spin").click(function () {
       $(".results").addClass(`roll-${lastRollColor()}`);
 
       if (rouletteNumber < 19) {
-        $(".high-low").html("LOW");
+        $(".high-low").html("AŞAĞI");
       } else {
-        $(".high-low").html("HIGH");
+        $(".high-low").html("YÜKSƏK");
       }
 
       if (rouletteNumber % 2 == 1) {
-        $(".odd-even").html("ODD");
+        $(".odd-even").html("TƏK");
       } else {
-        $(".odd-even").html("EVEN");
+        $(".odd-even").html("Qoşa");
       }
 
       $(".roll-number").html(rouletteNumber);
 
       if (win == true) {
-        $(".win-lose").html("YOU WON");
+        $(".win-lose").html("Qazandınız");
         setTimeout(function () {
           if (playAudio) {
             winSound.play();
@@ -701,7 +701,7 @@ $(".answer-yes").click(function () {
   $(".alert-game-over").removeClass("alert-message-visible");
   rolledNumbersArray = [];
   rolledNumbersColorArray = [];
-  cashSum = 1000;
+  cashSum = 10000;
   bankSum = cashSum;
   betSum = 0;
   $(".roll").html("");
