@@ -319,9 +319,9 @@ chipSelection();
 
 //Chips placing start
 var betSum = 0;
-var cashSum = 1000;
+var cashSum = 100000;
 var minBet = 5;
-var maxBet = 1000;
+var maxBet = 10000000;
 var areaChipCount = 0;
 var bankSum = cashSum;
 $(".cash-total").html(`${cashSum}.00`);
