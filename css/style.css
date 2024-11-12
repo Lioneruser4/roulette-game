@@ -1615,6 +1615,9 @@ button {
 button:hover {
     background-color: #218838;
 }
-  
+#message {
+    margin: 20px;
+    color: green;
+    font-size: 18px;
 }
 /*# sourceMappingURL=style.css.map */
