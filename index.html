@@ -1,4 +1,33 @@
 <!DOCTYPE html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Roulette Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Online Roulette Game</h1>
+    <div id="auth">
+        <input type="text" id="username" placeholder="Username">
+        <input type="password" id="password" placeholder="Password">
+        <button onclick="login()">Login</button>
+        <button onclick="register()">Register</button>
+    </div>
+    <div id="demoGame">
+        <button onclick="startDemoGame()">Play Demo Game</button>
+    </div>
+    <div id="game" style="display:none;">
+        <div id="moneyDisplay">Money: 0</div>
+        <!-- Oyun elementi burada olacaq -->
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
+
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
