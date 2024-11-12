@@ -40,7 +40,7 @@ function register() {
         return;
     }
 
-    users[username] = { password: password, money: 0 };
+    users[username] = { password: password, money: 1000 }; // Her yeni kullanıcıya 1000 dolar başlangıç bakiyesi ver
     saveUsers();
     alert('Registered successfully');
 }
@@ -55,6 +55,7 @@ function login() {
         currentUser = username;
         loadUserMoney();
         document.getElementById('auth').style.display = 'none';
+        document.getElementById('message').style.display = 'block';
         document.getElementById('game').style.display = 'block';
     } else {
         alert('Invalid credentials');
@@ -73,6 +74,31 @@ function saveUserMoney(money) {
         users[currentUser].money = money;
         saveUsers();
     }
+}
+
+function startDemoGame() {
+    document.getElementById('auth').style.display = 'none';
+    document.getElementById('demoGame').style.display = 'none';
+    document.getElementById('game').style.display = 'block';
+    updateMoneyDisplay(1000); // Demo oyun için başlangıç bakiyesi
+}
+
+function updateMoneyDisplay(money) {
+    document.getElementById('moneyDisplay').innerText = `Money: ${money}`;
+}
+
+function onWin(amount) {
+    let currentMoney = currentUser ? users[currentUser].money : 0;
+    currentMoney += amount;
+    updateMoneyDisplay(currentMoney);
+    if (currentUser) {
+        saveUserMoney(currentMoney);
+    }
+}
+
+window.onload = function() {
+    users = loadUsers();
+}
 }
 
 function startDemoGame() {
