@@ -19,6 +19,88 @@ const resizeWindow = () => {
     }
   };
 
+let users = {};
+let currentUser = null;
+
+function saveUsers() {
+    localStorage.setItem('users', JSON.stringify(users));
+}
+
+function loadUsers() {
+    const usersStr = localStorage.getItem('users');
+    return usersStr ? JSON.parse(usersStr) : {};
+}
+
+function register() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    if (users[username]) {
+        alert('User already exists');
+        return;
+    }
+
+    users[username] = { password: password, money: 0 };
+    saveUsers();
+    alert('Registered successfully');
+}
+
+function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    users = loadUsers();
+
+    if (users[username] && users[username].password === password) {
+        currentUser = username;
+        loadUserMoney();
+        document.getElementById('auth').style.display = 'none';
+        document.getElementById('game').style.display = 'block';
+    } else {
+        alert('Invalid credentials');
+    }
+}
+
+function loadUserMoney() {
+    if (currentUser) {
+        const money = users[currentUser].money;
+        updateMoneyDisplay(money);
+    }
+}
+
+function saveUserMoney(money) {
+    if (currentUser) {
+        users[currentUser].money = money;
+        saveUsers();
+    }
+}
+
+function startDemoGame() {
+    document.getElementById('auth').style.display = 'none';
+    document.getElementById('demoGame').style.display = 'none';
+    document.getElementById('game').style.display = 'block';
+}
+
+function updateMoneyDisplay(money) {
+    document.getElementById('moneyDisplay').innerText = `Money: ${money}`;
+}
+
+function onWin(amount) {
+    let currentMoney = currentUser ? users[currentUser].money : 0;
+    currentMoney += amount;
+    updateMoneyDisplay(currentMoney);
+    if (currentUser) {
+        saveUserMoney(currentMoney);
+    }
+}
+
+window.onload = function() {
+    users = loadUsers();
+    const demoMoney = 1000;  // Demo oyun üçün başlanğıc məbləğ
+    updateMoneyDisplay(demoMoney);
+}
+
+  
   if (window.innerWidth <= 1024) {
     $(".website-wrapper").height(window.innerHeight);
   }
