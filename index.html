@@ -1,33 +1,14 @@
 <!DOCTYPE html>
-
-<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Roulette Game</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rulet Oyunu</title>
 </head>
 <body>
-    <h1>Online Roulette Game</h1>
-    <div id="auth">
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
-        <button onclick="login()">Login</button>
-        <button onclick="register()">Register</button>
-    </div>
-    <div id="message" style="display:none;">Giriş yapıldı!</div>
-    <div id="demoGame">
-        <button onclick="startDemoGame()">Play Demo Game</button>
-    </div>
-    <div id="game" style="display:none;">
-        <div id="moneyDisplay">Money: 0</div>
-        <!-- Oyun elementi burada olacaq -->
-    </div>
-    <script src="game.js"></script>
-</body>
-</html>
-<!-- Google ile Giriş Butonu -->
+  <h1>Rulet Oyunu</h1>
+
+  <!-- Google ile Giriş Butonu -->
   <button onclick="googleSignIn()">Google ile Giriş Yap</button>
 
   <!-- Çıkış Yap Butonu -->
@@ -41,7 +22,30 @@
   <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-auth.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-firestore.js"></script>
   <script src="firebase.js"></script>
-  <script src="your-game.js"></script>
+  <script>
+    // Google giriş ve çıkış fonksiyonlarını buraya eklediğinizden emin olun
+    function googleSignIn() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      firebase.auth().signInWithPopup(provider)
+        .then((result) => {
+          const user = result.user;
+          console.log("Giriş Başarılı: ", user.displayName);
+        })
+        .catch((error) => {
+          console.error("Giriş Hatası: ", error);
+        });
+    }
+
+    function googleSignOut() {
+      firebase.auth().signOut().then(() => {
+        console.log("Çıkış yapıldı.");
+      });
+    }
+
+    function demoPlay() {
+      console.log("Demo kullanıcı olarak oyun başladı.");
+    }
+  </script>
 </body>
 </html>
 
