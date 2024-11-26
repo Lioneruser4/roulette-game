@@ -19,114 +19,6 @@ const resizeWindow = () => {
     }
   };
 
-let users = {};
-let currentUser = null;
-
-function saveUsers() {
-    localStorage.setItem('users', JSON.stringify(users));
-}
-
-function loadUsers() {
-    const usersStr = localStorage.getItem('users');
-    return usersStr ? JSON.parse(usersStr) : {};
-}
-
-function register() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-
-    if (users[username]) {
-        alert('User already exists');
-        return;
-    }
-
-    users[username] = { password: password, money: 1000 }; // Her yeni kullanıcıya 1000 dolar başlangıç bakiyesi ver
-    saveUsers();
-    alert('Registered successfully');
-}
-
-function login() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-
-    users = loadUsers();
-
-    if (users[username] && users[username].password === password) {
-        currentUser = username;
-        loadUserMoney();
-        document.getElementById('auth').style.display = 'none';
-        document.getElementById('message').style.display = 'block';
-        document.getElementById('game').style.display = 'block';
-    } else {
-        alert('Invalid credentials');
-    }
-}
-
-function loadUserMoney() {
-    if (currentUser) {
-        const money = users[currentUser].money;
-        updateMoneyDisplay(money);
-    }
-}
-
-function saveUserMoney(money) {
-    if (currentUser) {
-        users[currentUser].money = money;
-        saveUsers();
-    }
-}
-
-function startDemoGame() {
-    document.getElementById('auth').style.display = 'none';
-    document.getElementById('demoGame').style.display = 'none';
-    document.getElementById('game').style.display = 'block';
-    updateMoneyDisplay(1000); // Demo oyun için başlangıç bakiyesi
-}
-
-function updateMoneyDisplay(money) {
-    document.getElementById('moneyDisplay').innerText = `Money: ${money}`;
-}
-
-function onWin(amount) {
-    let currentMoney = currentUser ? users[currentUser].money : 0;
-    currentMoney += amount;
-    updateMoneyDisplay(currentMoney);
-    if (currentUser) {
-        saveUserMoney(currentMoney);
-    }
-}
-
-window.onload = function() {
-    users = loadUsers();
-}
-}
-
-function startDemoGame() {
-    document.getElementById('auth').style.display = 'none';
-    document.getElementById('demoGame').style.display = 'none';
-    document.getElementById('game').style.display = 'block';
-}
-
-function updateMoneyDisplay(money) {
-    document.getElementById('moneyDisplay').innerText = `Money: ${money}`;
-}
-
-function onWin(amount) {
-    let currentMoney = currentUser ? users[currentUser].money : 0;
-    currentMoney += amount;
-    updateMoneyDisplay(currentMoney);
-    if (currentUser) {
-        saveUserMoney(currentMoney);
-    }
-}
-
-window.onload = function() {
-    users = loadUsers();
-    const demoMoney = 1000;  // Demo oyun üçün başlanğıc məbləğ
-    updateMoneyDisplay(demoMoney);
-}
-
-  
   if (window.innerWidth <= 1024) {
     $(".website-wrapper").height(window.innerHeight);
   }
@@ -427,9 +319,9 @@ chipSelection();
 
 //Chips placing start
 var betSum = 0;
-var cashSum = 100000;
+var cashSum = 1000;
 var minBet = 5;
-var maxBet = 10000000;
+var maxBet = 1000;
 var areaChipCount = 0;
 var bankSum = cashSum;
 $(".cash-total").html(`${cashSum}.00`);
@@ -709,21 +601,21 @@ $(".button-spin").click(function () {
       $(".results").addClass(`roll-${lastRollColor()}`);
 
       if (rouletteNumber < 19) {
-        $(".high-low").html("AŞAĞI");
+        $(".high-low").html("LOW");
       } else {
-        $(".high-low").html("YÜKSƏK");
+        $(".high-low").html("HIGH");
       }
 
       if (rouletteNumber % 2 == 1) {
-        $(".odd-even").html("TƏK");
+        $(".odd-even").html("ODD");
       } else {
-        $(".odd-even").html("Qoşa");
+        $(".odd-even").html("EVEN");
       }
 
       $(".roll-number").html(rouletteNumber);
 
       if (win == true) {
-        $(".win-lose").html("Qazandınız");
+        $(".win-lose").html("YOU WON");
         setTimeout(function () {
           if (playAudio) {
             winSound.play();
@@ -809,7 +701,7 @@ $(".answer-yes").click(function () {
   $(".alert-game-over").removeClass("alert-message-visible");
   rolledNumbersArray = [];
   rolledNumbersColorArray = [];
-  cashSum = 10000;
+  cashSum = 1000;
   bankSum = cashSum;
   betSum = 0;
   $(".roll").html("");
