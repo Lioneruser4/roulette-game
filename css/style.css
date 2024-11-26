@@ -1585,39 +1585,5 @@ div {
   .roulette-table .money-container .area {
     font-size: 1rem;
   }
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #f0f0f0;
-}
-#auth, #demoGame, #game {
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    width: 80%;
-    max-width: 600px;
-}
-input {
-    padding: 10px;
-    margin: 10px;
-}
-button {
-    padding: 10px 20px;
-    margin: 10px;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-button:hover {
-    background-color: #218838;
-}
-#message {
-    margin: 20px;
-    color: green;
-    font-size: 18px;
 }
 /*# sourceMappingURL=style.css.map */
